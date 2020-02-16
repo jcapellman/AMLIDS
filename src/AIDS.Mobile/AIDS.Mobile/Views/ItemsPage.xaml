@@ -12,7 +12,14 @@
         <ToolbarItem Text="Sync" Clicked="Sync_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="RowHeader">Gold</Color>
+            <Color x:Key="Text">White</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="#2e2e2e">
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -21,16 +28,6 @@
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>First Item</x:String>
-                    <x:String>Second Item</x:String>
-                    <x:String>Third Item</x:String>
-                    <x:String>Fourth Item</x:String>
-                    <x:String>Fifth Item</x:String>
-                    <x:String>Sixth Item</x:String>
-                </x:Array>
-            </d:ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -38,22 +35,26 @@
                             <Label Text="{Binding TimeStamp}" 
                                 d:Text="{Binding .}"
                                 LineBreakMode="NoWrap" 
+                                TextColor="{StaticResource RowHeader}"
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="12" />
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Protocol}" 
                                     d:Text="Protocol"
                                     LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource Text}"
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="8" />
                                 <Label Text="{Binding DestinationIP}" 
                                     d:Text="Destination IP"
                                     LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource Text}"
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="10" />
                                 <Label Text="{Binding DestinationPort}" 
                                     d:Text="Destination Port"
                                     LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource Text}"
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="10" />
                             </StackLayout>
@@ -63,5 +64,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-    
 </ContentPage>

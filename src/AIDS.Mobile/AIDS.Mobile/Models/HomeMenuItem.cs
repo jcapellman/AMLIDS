@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AIDS.Mobile.Models
+﻿namespace AIDS.Mobile.Models
 {
     public enum MenuItemType
     {
-        Browse,
+        Traffic,
         About
     }
     public class HomeMenuItem

@@ -1,7 +1,5 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using AIDS.Mobile.Services;
+﻿using Xamarin.Forms;
+
 using AIDS.Mobile.Views;
 
 namespace AIDS.Mobile
@@ -13,7 +11,6 @@ namespace AIDS.Mobile
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 

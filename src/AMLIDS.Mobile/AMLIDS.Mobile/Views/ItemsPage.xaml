@@ -16,6 +16,23 @@
         <ResourceDictionary>
             <Color x:Key="RowHeader">Gold</Color>
             <Color x:Key="Text">White</Color>
+
+            <Style x:Key="CellHeader" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource Text}" />
+                <Setter Property="FontSize" Value="10" />
+            </Style>
+            
+            <Style x:Key="propertyHeader" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource Text}" />
+                <Setter Property="FontSize" Value="6" />
+            </Style>
+
+            <Style x:Key="propertyValue" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource RowHeader}" />
+                <Setter Property="FontSize" Value="10" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -23,7 +40,7 @@
                 ItemsSource="{Binding Items}"
                   HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                HasUnevenRows="true"
+                HasUnevenRows="true"              
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -31,18 +48,14 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="5,5,5,10">
+                    <Grid Margin="5,5,5,0" Padding="5,5,5,5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Text="{Binding TimeStamp}" 
-                                LineBreakMode="NoWrap" 
-                               FontAttributes="Bold"
-                                TextColor="{StaticResource Text}"
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="10" />
+                        <Label Grid.Row="0" Text="{Binding TimeStamp}" Style="{StaticResource CellHeader}" />
+                        
                         <Grid Grid.Row="1" ColumnSpacing="20">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -56,17 +69,17 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="6" FontAttributes="Bold" Text="protocol" TextColor="{StaticResource Text}" />
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="10" Text="{Binding Protocol}" TextColor="{StaticResource RowHeader}" />
+                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource propertyHeader}" Text="protocol" />
+                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource propertyValue}" Text="{Binding Protocol}" />
 
-                            <Label Grid.Row="0" Grid.Column="1" FontSize="6" FontAttributes="Bold" Text="dest ip" TextColor="{StaticResource Text}" />
-                            <Label Grid.Row="1" Grid.Column="1" FontSize="10" Text="{Binding DestinationIP}" TextColor="{StaticResource RowHeader}" />
+                            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource propertyHeader}" Text="dest ip" />
+                            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource propertyValue}" Text="{Binding DestinationIP}" />
 
-                            <Label Grid.Row="0" Grid.Column="2" FontSize="6" FontAttributes="Bold" Text="dest port" TextColor="{StaticResource Text}" />
-                            <Label Grid.Row="1" Grid.Column="2" FontSize="10" Text="{Binding DestinationPort}" TextColor="{StaticResource RowHeader}" />
+                            <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource propertyHeader}" Text="dest port" />
+                            <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource propertyValue}" Text="{Binding DestinationPort}" />
 
-                            <Label Grid.Row="0" Grid.Column="3" FontSize="6" FontAttributes="Bold" Text="connection state" TextColor="{StaticResource Text}" />
-                            <Label Grid.Row="1" Grid.Column="3" FontSize="10" Text="{Binding State}" TextColor="{StaticResource RowHeader}" />
+                            <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource propertyHeader}" Text="connection state" />
+                            <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource propertyValue}" Text="{Binding State}" />
                         </Grid>
                     </Grid>
                 </ViewCell>

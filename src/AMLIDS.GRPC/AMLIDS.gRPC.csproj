@@ -12,4 +12,8 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AMLIDS.lib.dal\AMLIDS.lib.dal.csproj" />
+  </ItemGroup>
+
 </Project>

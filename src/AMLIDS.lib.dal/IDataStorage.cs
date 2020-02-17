@@ -9,6 +9,8 @@ namespace AMLIDS.lib.dal
 {
     public interface IDataStorage
     {
+        void SetPath(string pathToDatabase);
+
         OperationResponse InsertNetworkData<T>(T payload, int dataDefinitionVersion);
 
         OperationResponse InsertBulkNetworkData<T>(List<T> payload, int dataDefinitionVersion);

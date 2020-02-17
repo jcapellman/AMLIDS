@@ -5,6 +5,7 @@ using LiteDB;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -14,9 +15,11 @@ namespace AMLIDS.lib.dal.litedb
     {
         private const string DB_FILENAME = "ds.db";
 
+        private string DB_PATH;
+
         public List<NetworkDataItem> GetAllNetworkData()
         {
-            using (var db = new LiteDatabase(DB_FILENAME))
+            using (var db = new LiteDatabase(DB_PATH))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
@@ -26,7 +29,7 @@ namespace AMLIDS.lib.dal.litedb
 
         public OperationResponse InsertBulkNetworkData<T>(List<T> payload, int dataDefinitionVersion)
         {
-            using (var db = new LiteDatabase(DB_FILENAME))
+            using (var db = new LiteDatabase(DB_PATH))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
@@ -38,7 +41,7 @@ namespace AMLIDS.lib.dal.litedb
 
         public OperationResponse InsertNetworkData<T>(T payload, int dataDefinitionVersion)
         {
-            using (var db = new LiteDatabase(DB_FILENAME))
+            using (var db = new LiteDatabase(DB_PATH))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
@@ -50,12 +53,17 @@ namespace AMLIDS.lib.dal.litedb
 
         public List<NetworkDataItem> QueryNetworkData(Expression<Func<NetworkDataItem, bool>> query)
         {
-            using (var db = new LiteDatabase(DB_FILENAME))
+            using (var db = new LiteDatabase(DB_PATH))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
                 return collection.Find(query).ToList();
             }
+        }
+
+        public void SetPath(string pathToDatabase)
+        {
+            DB_PATH = Path.Combine(pathToDatabase, DB_FILENAME);
         }
     }
 }

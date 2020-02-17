@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 
 using AMLIDS.lib.dal.litedb;
+using AMLIDS.lib.dal;
 
 namespace AMLIDS.Mobile.Droid
 {
@@ -21,6 +22,8 @@ namespace AMLIDS.Mobile.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Xamarin.Forms.DependencyService.Register<LiteDBDataStorage>();
+
+            Xamarin.Forms.DependencyService.Get<IDataStorage>().SetPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 
             LoadApplication(new App());
         }

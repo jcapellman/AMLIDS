@@ -11,6 +11,8 @@ namespace AMLIDS.lib.dal
     {
         OperationResponse InsertNetworkData(object payload);
 
+        OperationResponse InsertBulkNetworkData(List<object> payload);
+
         List<NetworkDataItem> QueryNetworkData(Expression<Func<NetworkDataItem, bool>> query);
 
         List<NetworkDataItem> GetAllNetworkData();

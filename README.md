@@ -1,5 +1,5 @@
 # Android Machine Learning Intrusion Detection System
-This repository contains all of the work for DSc in Cybersecurity from Capitol Tech University.
+This repository contains all of the work for my DSc in Cybersecurity from Capitol Tech University.
 
 ## Components
 

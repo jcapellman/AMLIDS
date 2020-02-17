@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace AIDS.Mobile.iOS
+namespace AMLIDS.Mobile.iOS
 {
     public class Application
     {

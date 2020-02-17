@@ -24,7 +24,7 @@ namespace AMLIDS.lib.dal.litedb
             }
         }
 
-        public OperationResponse InsertBulkNetworkData(List<object> payload)
+        public OperationResponse InsertBulkNetworkData<T>(List<T> payload)
         {
             using (var db = new LiteDatabase(DB_FILENAME))
             {
@@ -36,7 +36,7 @@ namespace AMLIDS.lib.dal.litedb
             }
         }
 
-        public OperationResponse InsertNetworkData(object payload)
+        public OperationResponse InsertNetworkData<T>(T payload)
         {
             using (var db = new LiteDatabase(DB_FILENAME))
             {

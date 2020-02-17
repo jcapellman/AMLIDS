@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using AMLIDS.Mobile.Models;
 using AMLIDS.Mobile.Extensions;
+using AMLIDS.lib.dal;
 
 namespace AMLIDS.Mobile.ViewModels
 {
@@ -70,6 +71,8 @@ namespace AMLIDS.Mobile.ViewModels
             try
             {
                 var items = GetConnections();
+
+                DependencyService.Get<IDataStorage>().InsertBulkNetworkData(items);
 
                 foreach (var item in items)
                 {

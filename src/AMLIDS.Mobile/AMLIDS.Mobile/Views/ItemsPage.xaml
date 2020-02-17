@@ -19,49 +19,58 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout BackgroundColor="#2e2e2e">
-        <ListView x:Name="ItemsListView"
+    <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
-                VerticalOptions="FillAndExpand"
+                  HorizontalOptions="Fill"
+                VerticalOptions="Fill"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="10" Orientation="Vertical">
-                            <Label Text="{Binding TimeStamp}" 
-                                d:Text="{Binding .}"
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="5,5,5,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Text="{Binding TimeStamp}" 
                                 LineBreakMode="NoWrap" 
-                                TextColor="{StaticResource RowHeader}"
+                               FontAttributes="Bold"
+                                TextColor="{StaticResource Text}"
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Protocol}" 
-                                    d:Text="Protocol"
-                                    LineBreakMode="NoWrap"
-                                    TextColor="{StaticResource Text}"
-                                    Style="{DynamicResource ListItemDetailTextStyle}"
-                                    FontSize="8" />
-                                <Label Text="{Binding DestinationIP}" 
-                                    d:Text="Destination IP"
-                                    LineBreakMode="NoWrap"
-                                    TextColor="{StaticResource Text}"
-                                    Style="{DynamicResource ListItemDetailTextStyle}"
-                                    FontSize="10" />
-                                <Label Text="{Binding DestinationPort}" 
-                                    d:Text="Destination Port"
-                                    LineBreakMode="NoWrap"
-                                    TextColor="{StaticResource Text}"
-                                    Style="{DynamicResource ListItemDetailTextStyle}"
-                                    FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                                FontSize="10" />
+                        <Grid Grid.Row="1" ColumnSpacing="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="6" FontAttributes="Bold" Text="protocol" TextColor="{StaticResource Text}" />
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="10" Text="{Binding Protocol}" TextColor="{StaticResource RowHeader}" />
+
+                            <Label Grid.Row="0" Grid.Column="1" FontSize="6" FontAttributes="Bold" Text="dest ip" TextColor="{StaticResource Text}" />
+                            <Label Grid.Row="1" Grid.Column="1" FontSize="10" Text="{Binding DestinationIP}" TextColor="{StaticResource RowHeader}" />
+
+                            <Label Grid.Row="0" Grid.Column="2" FontSize="6" FontAttributes="Bold" Text="dest port" TextColor="{StaticResource Text}" />
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="10" Text="{Binding DestinationPort}" TextColor="{StaticResource RowHeader}" />
+
+                            <Label Grid.Row="0" Grid.Column="3" FontSize="6" FontAttributes="Bold" Text="connection state" TextColor="{StaticResource Text}" />
+                            <Label Grid.Row="1" Grid.Column="3" FontSize="10" Text="{Binding State}" TextColor="{StaticResource RowHeader}" />
+                        </Grid>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

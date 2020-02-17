@@ -1,14 +1,14 @@
 ﻿using System;
 
-using AMLIDS.Mobile.Models;
+using AMLIDS.lib.common.Models;
 
-namespace AMLIDS.Mobile.Extensions
+namespace AMLIDS.lib.common.Extensions
 {
     public static class Netstat
     {
-        public static Item ToItem(this string lineOutput)
+        public static RawNetworkCaptureItem ToRawNetworkCaptureItem(this string lineOutput)
         {
-            var item = new Item();
+            var item = new RawNetworkCaptureItem();
 
             if (!lineOutput.StartsWith("tcp") && !lineOutput.StartsWith("udp"))
             {
@@ -31,7 +31,8 @@ namespace AMLIDS.Mobile.Extensions
 
                 item.SourceIP = sourceData[0];
                 item.SourcePort = Convert.ToInt32(sourceData[1]);
-            } else
+            }
+            else
             {
                 return null; // TODO: Handle IPv6
             }
@@ -42,7 +43,8 @@ namespace AMLIDS.Mobile.Extensions
 
                 item.DestinationIP = destinationData[0];
                 item.DestinationPort = Convert.ToInt32(destinationData[1]);
-            } else
+            }
+            else
             {
                 return null; // TODO: Handle IPv6
             }

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace AMLIDS.Mobile.Models
+namespace AMLIDS.lib.common.Models
 {
-    public class Item
+    public class RawNetworkCaptureItem
     {
         public DateTime TimeStamp { get; set; }
 
@@ -11,7 +11,7 @@ namespace AMLIDS.Mobile.Models
         public string SourceIP { get; set; }
 
         public int SourcePort { get; set; }
-        
+
         public string DestinationIP { get; set; }
 
         public int DestinationPort { get; set; }

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.dal", "AMLIDS.li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.dal.litedb", "AMLIDS.lib.dal.litedb\AMLIDS.lib.dal.litedb.csproj", "{D92F6CB5-E544-4370-9EAA-EDAE5484464B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.common", "AMLIDS.lib.common\AMLIDS.lib.common.csproj", "{C5211E61-FAD7-4B87-BE70-75BC08B39604}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,18 @@ Global
 		{D92F6CB5-E544-4370-9EAA-EDAE5484464B}.Release|iPhone.Build.0 = Release|Any CPU
 		{D92F6CB5-E544-4370-9EAA-EDAE5484464B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D92F6CB5-E544-4370-9EAA-EDAE5484464B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|iPhone.Build.0 = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C5211E61-FAD7-4B87-BE70-75BC08B39604}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

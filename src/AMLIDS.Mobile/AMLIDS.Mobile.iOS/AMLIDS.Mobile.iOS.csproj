@@ -139,6 +139,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\AMLIDS.lib.common\AMLIDS.lib.common.csproj">
+      <Project>{c5211e61-fad7-4b87-be70-75bc08b39604}</Project>
+      <Name>AMLIDS.lib.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AMLIDS.lib.dal\AMLIDS.lib.dal.csproj">
       <Project>{ddd5dd3d-6509-4a2a-8966-3a13b48eb5cb}</Project>
       <Name>AMLIDS.lib.dal</Name>

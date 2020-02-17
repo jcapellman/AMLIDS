@@ -1,4 +1,4 @@
-﻿namespace AMLIDS.lib.dal.Common
+﻿namespace AMLIDS.lib.common.Common
 {
     public static class Constants
     {

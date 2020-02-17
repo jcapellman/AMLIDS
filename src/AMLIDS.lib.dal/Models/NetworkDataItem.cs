@@ -16,9 +16,9 @@ namespace AMLIDS.lib.dal.Models
 
         public NetworkDataItem() { }
 
-        public NetworkDataItem(object payload)
+        public NetworkDataItem(object payload, int dataDefinitionVersion)
         {
-            Version = Common.Constants.DATA_DEFINITION_VERSION;
+            Version = dataDefinitionVersion;
 
             JSON = JsonConvert.SerializeObject(payload);
 

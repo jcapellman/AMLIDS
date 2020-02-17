@@ -5,26 +5,26 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 
-using AMLIDS.Mobile.Models;
-using AMLIDS.Mobile.Extensions;
 using AMLIDS.lib.dal;
+using AMLIDS.lib.common.Models;
+using AMLIDS.lib.common.Extensions;
 
 namespace AMLIDS.Mobile.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<RawNetworkCaptureItem> Items { get; set; }
 
         public Command LoadItemsCommand { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Traffic";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<RawNetworkCaptureItem>();
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
         }
 
-        private List<Item> GetConnections()
+        private List<RawNetworkCaptureItem> GetConnections()
         {
             var process = new Process
             {
@@ -40,11 +40,11 @@ namespace AMLIDS.Mobile.ViewModels
 
             process.Start();
 
-            var items = new List<Item>();
+            var items = new List<RawNetworkCaptureItem>();
 
             while (!process.StandardOutput.EndOfStream)
             {
-                var item = process.StandardOutput.ReadLine().ToItem();
+                var item = process.StandardOutput.ReadLine().ToRawNetworkCaptureItem();
 
                 if (item == null)
                 {
@@ -72,7 +72,7 @@ namespace AMLIDS.Mobile.ViewModels
             {
                 var items = GetConnections();
 
-                DependencyService.Get<IDataStorage>().InsertBulkNetworkData(items);
+                DependencyService.Get<IDataStorage>().InsertBulkNetworkData(items, lib.common.Common.Constants.DATA_DEFINITION_VERSION);
 
                 foreach (var item in items)
                 {

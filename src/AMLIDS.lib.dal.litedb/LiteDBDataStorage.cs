@@ -24,25 +24,25 @@ namespace AMLIDS.lib.dal.litedb
             }
         }
 
-        public OperationResponse InsertBulkNetworkData<T>(List<T> payload)
+        public OperationResponse InsertBulkNetworkData<T>(List<T> payload, int dataDefinitionVersion)
         {
             using (var db = new LiteDatabase(DB_FILENAME))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
-                collection.InsertBulk(payload.Select(a => new NetworkDataItem(a)));
+                collection.InsertBulk(payload.Select(a => new NetworkDataItem(a, dataDefinitionVersion)));
 
                 return OperationResponse.SUCCESS;
             }
         }
 
-        public OperationResponse InsertNetworkData<T>(T payload)
+        public OperationResponse InsertNetworkData<T>(T payload, int dataDefinitionVersion)
         {
             using (var db = new LiteDatabase(DB_FILENAME))
             {
                 var collection = db.GetCollection<NetworkDataItem>();
 
-                collection.Insert(new NetworkDataItem(payload));
+                collection.Insert(new NetworkDataItem(payload, dataDefinitionVersion));
 
                 return OperationResponse.SUCCESS;
             }

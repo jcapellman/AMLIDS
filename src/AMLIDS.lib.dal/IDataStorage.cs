@@ -9,9 +9,9 @@ namespace AMLIDS.lib.dal
 {
     public interface IDataStorage
     {
-        OperationResponse InsertNetworkData<T>(T payload);
+        OperationResponse InsertNetworkData<T>(T payload, int dataDefinitionVersion);
 
-        OperationResponse InsertBulkNetworkData<T>(List<T> payload);
+        OperationResponse InsertBulkNetworkData<T>(List<T> payload, int dataDefinitionVersion);
 
         List<NetworkDataItem> QueryNetworkData(Expression<Func<NetworkDataItem, bool>> query);
 

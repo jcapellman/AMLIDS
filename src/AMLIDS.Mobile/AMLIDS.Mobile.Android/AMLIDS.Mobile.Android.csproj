@@ -103,6 +103,10 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AMLIDS.lib.common\AMLIDS.lib.common.csproj">
+      <Project>{c5211e61-fad7-4b87-be70-75bc08b39604}</Project>
+      <Name>AMLIDS.lib.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AMLIDS.lib.dal.litedb\AMLIDS.lib.dal.litedb.csproj">
       <Project>{d92f6cb5-e544-4370-9eaa-edae5484464b}</Project>
       <Name>AMLIDS.lib.dal.litedb</Name>

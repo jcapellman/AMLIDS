@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AMLIDS.lib.common\AMLIDS.lib.common.csproj" />
     <ProjectReference Include="..\..\AMLIDS.lib.dal.litedb\AMLIDS.lib.dal.litedb.csproj" />
     <ProjectReference Include="..\..\AMLIDS.lib.dal\AMLIDS.lib.dal.csproj" />
   </ItemGroup>

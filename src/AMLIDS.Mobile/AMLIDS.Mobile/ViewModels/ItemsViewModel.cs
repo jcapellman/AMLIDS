@@ -21,7 +21,7 @@ namespace AMLIDS.Mobile.ViewModels
         {
             Title = "Traffic";
             Items = new ObservableCollection<RawNetworkCaptureItem>();
-            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
         }
 
         private List<RawNetworkCaptureItem> GetConnections()

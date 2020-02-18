@@ -18,5 +18,7 @@ namespace AMLIDS.lib.dal
         List<NetworkDataItem> QueryNetworkData(Expression<Func<NetworkDataItem, bool>> query);
 
         List<NetworkDataItem> GetAllNetworkData();
+
+        OperationResponse PurgeAllData();
     }
 }

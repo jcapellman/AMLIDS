@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 
+using AMLIDS.lib.dal;
 using AMLIDS.Mobile.Services;
 
 using Xamarin.Essentials;
@@ -29,9 +30,16 @@ namespace AMLIDS.Mobile.ViewModels
 
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://github.com/jcapellman/AMLIDS/"));
 
+            PurgeLocalStorageCommand = new Command(() =>
+            {
+                DependencyService.Get<IDataStorage>().PurgeAllData();
+            });
+
             VersionString = $"Version {DependencyService.Get<IVersionService>().VersionNumber} (BUILD {DependencyService.Get<IVersionService>().BuildNumber})";
         }
 
         public ICommand OpenWebCommand { get; }
+
+        public ICommand PurgeLocalStorageCommand { get; }
     }
 }

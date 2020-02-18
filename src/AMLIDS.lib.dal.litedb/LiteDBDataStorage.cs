@@ -27,6 +27,16 @@ namespace AMLIDS.lib.dal.litedb
             }
         }
 
+        public OperationResponse PurgeAllData()
+        {
+            using (var db = new LiteDatabase(DB_PATH))
+            {
+                db.DropCollection(nameof(NetworkDataItem));
+
+                return OperationResponse.SUCCESS;
+            }
+        }
+
         public OperationResponse InsertBulkNetworkData<T>(List<T> payload, int dataDefinitionVersion)
         {
             using (var db = new LiteDatabase(DB_PATH))

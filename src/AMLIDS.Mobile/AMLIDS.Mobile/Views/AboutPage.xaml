@@ -32,9 +32,21 @@
             <Label FontSize="10" TextColor="{StaticResource HeaderText}" HorizontalOptions="Center" Text="{Binding VersionString}" />
         </StackLayout>
 
-        <Button Grid.Row="1" VerticalOptions="End" Margin="10,0,10,10" Text="Source on GitHub"
+        <Grid Grid.Row="1" Margin="10,0,10,10" VerticalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        
+            <Button Grid.Row="0" Text="Purge Local Storage" 
+                    Command="{Binding PurgeLocalStorageCommand}" 
+                    TextColor="{StaticResource Text}" 
+                    BackgroundColor="{StaticResource ButtonBackground}" />
+
+            <Button Grid.Row="1" Text="Source on GitHub"
                     Command="{Binding OpenWebCommand}"
                     BackgroundColor="{StaticResource ButtonBackground}"
-                    TextColor="White" />
+                    TextColor="{StaticResource Text}" />
+        </Grid>
     </Grid>
 </ContentPage>

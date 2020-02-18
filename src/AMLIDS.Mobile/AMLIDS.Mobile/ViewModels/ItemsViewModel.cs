@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 using Xamarin.Forms;
 
@@ -13,7 +14,18 @@ namespace AMLIDS.Mobile.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<RawNetworkCaptureItem> Items { get; set; }
+        private ObservableCollection<RawNetworkCaptureItem> _items;
+
+        public ObservableCollection<RawNetworkCaptureItem> Items
+        {
+            get => _items;
+            
+            set
+            {
+                _items = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Command LoadItemsCommand { get; set; }
 
@@ -78,6 +90,8 @@ namespace AMLIDS.Mobile.ViewModels
                 {
                     Items.Add(item);
                 }
+
+                Items = new ObservableCollection<RawNetworkCaptureItem>(Items.OrderByDescending(a => a.TimeStamp));
             }
             catch (Exception ex)
             {

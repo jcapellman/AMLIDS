@@ -1,4 +1,6 @@
-﻿namespace AMLIDS.Mobile.Services
+﻿using AMLIDS.lib.common.Models;
+
+namespace AMLIDS.Mobile.Services
 {
     public interface IVersionService
     {
@@ -6,12 +8,6 @@
 
         string BuildNumber { get; }
 
-        string PlatformVersion { get; }
-
-        string ModelName { get; }
-
-        string Manufacturer { get; }
-
-        string Platform { get; }
+        DeviceInformationItem DeviceInfo { get; }
     }
 }

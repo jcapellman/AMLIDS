@@ -26,6 +26,7 @@ namespace AMLIDS.Mobile.ViewModels
         public AboutViewModel()
         {
             Title = "About";
+
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://github.com/jcapellman/AMLIDS/"));
 
             VersionString = $"Version {DependencyService.Get<IVersionService>().VersionNumber} (BUILD {DependencyService.Get<IVersionService>().BuildNumber})";

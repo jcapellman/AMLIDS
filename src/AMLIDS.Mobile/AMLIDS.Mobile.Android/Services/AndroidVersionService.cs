@@ -1,4 +1,5 @@
-﻿using AMLIDS.Mobile.Services;
+﻿using AMLIDS.lib.common.Models;
+using AMLIDS.Mobile.Services;
 
 using Android.Content.PM;
 
@@ -21,12 +22,12 @@ namespace AMLIDS.Mobile.Droid.Services
 
         public string BuildNumber => _appInfo.VersionCode.ToString();
 
-        public string PlatformVersion => DeviceInfo.VersionString;
-
-        public string ModelName => DeviceInfo.Model;
-
-        public string Manufacturer => DeviceInfo.Manufacturer;
-
-        public string Platform => DeviceInfo.Platform.ToString();
+        DeviceInformationItem IVersionService.DeviceInfo => new DeviceInformationItem
+        {
+            Model = DeviceInfo.Model,
+            Manufacturer = DeviceInfo.Manufacturer,
+            PlatformType = DeviceInfo.Platform.ToString(),
+            PlatformVersion = DeviceInfo.VersionString
+        };
     }
 }

@@ -24,6 +24,7 @@ namespace AMLIDS.Mobile.Droid
 
             Xamarin.Forms.DependencyService.Register<LiteDBDataStorage>();
             Xamarin.Forms.DependencyService.Register<AndroidVersionService>();
+            Xamarin.Forms.DependencyService.Register<AndroidNetworkService>();
 
             Xamarin.Forms.DependencyService.Get<IDataStorage>().SetPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 

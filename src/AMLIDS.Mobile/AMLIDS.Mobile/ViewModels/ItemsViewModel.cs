@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +7,8 @@ using Xamarin.Forms;
 
 using AMLIDS.lib.dal;
 using AMLIDS.lib.common.Models;
-using AMLIDS.lib.common.Extensions;
+
+using AMLIDS.Mobile.Services;
 
 namespace AMLIDS.Mobile.ViewModels
 {
@@ -36,41 +36,6 @@ namespace AMLIDS.Mobile.ViewModels
             LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
         }
 
-        private List<RawNetworkCaptureItem> GetConnections()
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "/system/bin/netstat",
-                    Arguments = "-n",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-
-            var items = new List<RawNetworkCaptureItem>();
-
-            while (!process.StandardOutput.EndOfStream)
-            {
-                var item = process.StandardOutput.ReadLine().ToRawNetworkCaptureItem();
-
-                if (item == null)
-                {
-                    continue;
-                }
-
-                items.Add(item);
-            }
-
-            process.WaitForExit();
-
-            return items;
-        }
-
         void ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -82,7 +47,7 @@ namespace AMLIDS.Mobile.ViewModels
 
             try
             {
-                var items = GetConnections();
+                var items = DependencyService.Get<INetworkService>().GetNetworkData();
 
                 DependencyService.Get<IDataStorage>().InsertBulkNetworkData(items, lib.common.Common.Constants.DATA_DEFINITION_VERSION);
 

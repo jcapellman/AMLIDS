@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "AMLIDS.gRPC";
+
+package submission;
+
+service Submission {
+  rpc SubmitNetworkTraffic (SubmissionRequest) returns (SubmissionResponse);
+}
+
+message SubmissionRequest {
+  string name = 1;
+}
+
+message SubmissionResponse {
+  bool Success = 1;
+  string message = 2;
+}

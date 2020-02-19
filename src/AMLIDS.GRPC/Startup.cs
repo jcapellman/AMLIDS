@@ -31,7 +31,7 @@ namespace AMLIDS.gRPC
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<SubmissionService>();
 
                 endpoints.MapGet("/", async context =>
                 {

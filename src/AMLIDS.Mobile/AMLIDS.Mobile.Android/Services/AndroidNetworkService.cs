@@ -10,6 +10,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.Net;
 using Android.Telephony;
+using Java.IO;
 
 namespace AMLIDS.Mobile.Droid.Services
 {
@@ -29,10 +30,13 @@ namespace AMLIDS.Mobile.Droid.Services
         }
 
         public List<RawNetworkCaptureItem> GetNetworkData()
-        {
-            TelephonyManager tm = (TelephonyManager)Android.App.Application.Context.GetSystemService(Context.TelephonyService);
+        { 
+            //TelephonyManager tm = (TelephonyManager)Android.App.Application.Context.GetSystemService(Context.TelephonyService);
 
-            var bucket = _networkStatsManager.QuerySummaryForDevice(ConnectivityType.Mobile, tm.SubscriberId, 0, 1000);
+            //var bucket = _networkStatsManager.QuerySummaryForDevice(ConnectivityType.Mobile, tm.SubscriberId, 0, 1000);
+
+            var log = System.IO.File.ReadAllLines("/proc/net/tcp");
+
 
             return new List<RawNetworkCaptureItem>();
         }

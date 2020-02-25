@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.Mobile.iOS", "AMLIDS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMLIDS.Mobile", "AMLIDS.Mobile\AMLIDS.Mobile\AMLIDS.Mobile.csproj", "{09CEAA8B-961F-4863-B166-2BBFD68AB99F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.dal", "AMLIDS.lib.dal\AMLIDS.lib.dal.csproj", "{DDD5DD3D-6509-4A2A-8966-3A13B48EB5CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMLIDS.lib.dal", "AMLIDS.lib.dal\AMLIDS.lib.dal.csproj", "{DDD5DD3D-6509-4A2A-8966-3A13B48EB5CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.dal.litedb", "AMLIDS.lib.dal.litedb\AMLIDS.lib.dal.litedb.csproj", "{D92F6CB5-E544-4370-9EAA-EDAE5484464B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMLIDS.lib.dal.litedb", "AMLIDS.lib.dal.litedb\AMLIDS.lib.dal.litedb.csproj", "{D92F6CB5-E544-4370-9EAA-EDAE5484464B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMLIDS.lib.common", "AMLIDS.lib.common\AMLIDS.lib.common.csproj", "{C5211E61-FAD7-4B87-BE70-75BC08B39604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMLIDS.lib.common", "AMLIDS.lib.common\AMLIDS.lib.common.csproj", "{C5211E61-FAD7-4B87-BE70-75BC08B39604}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

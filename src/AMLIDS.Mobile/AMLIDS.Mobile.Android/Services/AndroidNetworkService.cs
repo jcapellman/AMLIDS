@@ -7,35 +7,40 @@ using AMLIDS.Mobile.Services;
 using Android.App;
 using Android.App.Usage;
 using Android.Content;
-using Android.Content.PM;
 using Android.Net;
 using Android.Telephony;
-using Java.IO;
 
 namespace AMLIDS.Mobile.Droid.Services
 {
     public class AndroidNetworkService : INetworkService
     {
+        class AppNetworkCallback : ConnectivityManager.NetworkCallback
+        {
+            public override void OnAvailable(Network network)
+            {
+                base.OnAvailable(network);
+            }
+        }
+
         private readonly NetworkStatsManager _networkStatsManager;
 
         private readonly int _packageUid;
 
         public AndroidNetworkService()
         {
-            _networkStatsManager =
-                (NetworkStatsManager) Android.App.Application.Context.GetSystemService(Context.NetworkStatsService);
+            ConnectivityManager conn = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
+            NetworkRequest.Builder builder = new NetworkRequest.Builder();
 
-            _packageUid = Application.Context.PackageManager.GetPackageUid(Application.Context.PackageName,
-                PackageInfoFlags.MatchAll);
+            conn.RegisterNetworkCallback(builder.Build(), new AppNetworkCallback());
         }
 
         public List<RawNetworkCaptureItem> GetNetworkData()
         { 
-            //TelephonyManager tm = (TelephonyManager)Android.App.Application.Context.GetSystemService(Context.TelephonyService);
+       //     TelephonyManager tm = (TelephonyManager)Android.App.Application.Context.GetSystemService(Context.TelephonyService);
 
-            //var bucket = _networkStatsManager.QuerySummaryForDevice(ConnectivityType.Mobile, tm.SubscriberId, 0, 1000);
+         //   var bucket = _networkStatsManager.QuerySummaryForDevice(ConnectivityType.Mobile, tm.SubscriberId, 0, 1000);
 
-            var log = System.IO.File.ReadAllLines("/proc/net/tcp");
+            //var log = System.IO.File.ReadAllLines("/proc/net/tcp");
 
 
             return new List<RawNetworkCaptureItem>();

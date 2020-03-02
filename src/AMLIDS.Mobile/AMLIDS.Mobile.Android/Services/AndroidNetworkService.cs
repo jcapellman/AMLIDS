@@ -4,46 +4,84 @@ using System.Collections.Generic;
 using AMLIDS.lib.common.Models;
 using AMLIDS.Mobile.Services;
 
-using Android.App;
-using Android.App.Usage;
-using Android.Content;
-using Android.Net;
-using Android.Telephony;
+using Java.IO;
+using Java.Lang;
 
 namespace AMLIDS.Mobile.Droid.Services
 {
     public class AndroidNetworkService : INetworkService
     {
-        class AppNetworkCallback : ConnectivityManager.NetworkCallback
+        private RawNetworkCaptureItem ParseNetStatLine(string line)
         {
-            public override void OnAvailable(Network network)
+            var item = new RawNetworkCaptureItem();
+
+            if (!line.StartsWith("tcp") && !line.StartsWith("udp"))
             {
-                base.OnAvailable(network);
+                return null;
             }
+
+            var data = line.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            if (data.Length != 6)
+            {
+                return null;
+            }
+
+            item.TimeStamp = DateTime.Now;
+            item.Protocol = data[0];
+
+            if (data[3].Split(':').Length == 2)
+            {
+                var sourceData = data[3].Split(':');
+
+                item.SourceIP = sourceData[0];
+                item.SourcePort = Convert.ToInt32(sourceData[1]);
+            }
+            else
+            {
+                return null; // TODO: Handle IPv6
+            }
+
+            if (data[4].Split(':').Length == 2)
+            {
+                var destinationData = data[4].Split(':');
+
+                item.DestinationIP = destinationData[0];
+                item.DestinationPort = Convert.ToInt32(destinationData[1]);
+            }
+            else
+            {
+                return null; // TODO: Handle IPv6
+            }
+
+            item.State = data[5];
+
+            return item;
         }
-
-        private readonly NetworkStatsManager _networkStatsManager;
-
-        private readonly int _packageUid;
-
-        public AndroidNetworkService()
-        {
-            ConnectivityManager conn = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
-            NetworkRequest.Builder builder = new NetworkRequest.Builder();
-
-            conn.RegisterNetworkCallback(builder.Build(), new AppNetworkCallback());
-        }
-
+    
         public List<RawNetworkCaptureItem> GetNetworkData()
-        { 
-       //     TelephonyManager tm = (TelephonyManager)Android.App.Application.Context.GetSystemService(Context.TelephonyService);
+        {
+            var p = Runtime.GetRuntime().Exec("netstat -n");
 
-         //   var bucket = _networkStatsManager.QuerySummaryForDevice(ConnectivityType.Mobile, tm.SubscriberId, 0, 1000);
+            var a = new BufferedReader(new InputStreamReader(p.InputStream));
 
-            //var log = System.IO.File.ReadAllLines("/proc/net/tcp");
+            var lines = new List<RawNetworkCaptureItem>();
 
+            string line = null;
 
-            return new List<RawNetworkCaptureItem>();
+            while ((line = a.ReadLine()) != null)
+            {
+                var item = ParseNetStatLine(line);
+
+                if (item == null)
+                {
+                    continue;
+                }
+
+                lines.Add(item);
+            }
+
+            return lines;
         }
     }
 }

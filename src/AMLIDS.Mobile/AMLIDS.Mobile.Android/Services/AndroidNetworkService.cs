@@ -20,7 +20,7 @@ namespace AMLIDS.Mobile.Droid.Services
                 return null;
             }
 
-            var data = line.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                var data = line.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (data.Length != 6)
             {
@@ -35,7 +35,7 @@ namespace AMLIDS.Mobile.Droid.Services
                 var sourceData = data[3].Split(':');
 
                 item.SourceIP = sourceData[0];
-                item.SourcePort = Convert.ToInt32(sourceData[1]);
+                item.SourcePort = Convert.ToInt32(data[1]);
             }
             else
             {
@@ -47,7 +47,7 @@ namespace AMLIDS.Mobile.Droid.Services
                 var destinationData = data[4].Split(':');
 
                 item.DestinationIP = destinationData[0];
-                item.DestinationPort = Convert.ToInt32(destinationData[1]);
+                item.DestinationPort = Convert.ToInt32(data[1]);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace AMLIDS.Mobile.Droid.Services
     
         public List<RawNetworkCaptureItem> GetNetworkData()
         {
-            var p = Runtime.GetRuntime().Exec("netstat -n");
+            var p = Runtime.GetRuntime().Exec("netstat -t");
 
             var a = new BufferedReader(new InputStreamReader(p.InputStream));
 
